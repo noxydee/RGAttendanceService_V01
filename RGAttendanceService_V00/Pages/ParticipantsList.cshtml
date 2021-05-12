@@ -4,3 +4,31 @@
     ViewData["title"] = "Lista uczestników";
 }
 
+<body>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model =>Model.List[0].FirstName)</th>
+                <th scope="col">@Html.DisplayNameFor(model => Model.List[0].LastName)</th>
+                <th scope="col">@Html.DisplayNameFor(model => Model.GroupList[0].Name)</th>
+                <th scope="col">Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Participant in Model.List)
+            {
+            <tr>
+                <th scope="row">@Html.DisplayFor(p => Participant.FirstName)</th>
+                <th scope="row">@Html.DisplayFor(p => Participant.LastName)</th>
+                <th scope="row">@Html.DisplayFor(p => Participant.Group.Name)</th>
+                <th>
+
+                </th>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+
+</body>

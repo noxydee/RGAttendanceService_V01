@@ -26,7 +26,8 @@ namespace RGAttendanceService_V00.Models
         [Required(ErrorMessage ="Pole płeć jest wymagane")]
         public string Gender { get; set; }
         [Display(Name ="Numer Telefonu")]
-        public PhoneAttribute PhoneNumber { get; set; }
+        [DataType(DataType.PhoneNumber,ErrorMessage ="Błędy number telefonu")]
+        public string PhoneNumber { get; set; }
         [Display(Name ="Wiek")]
         public int? Age { get; set; }
         [Display(Name ="Kraj")]
@@ -39,5 +40,7 @@ namespace RGAttendanceService_V00.Models
         public string AddressNumber { get; set; }
         [Display(Name ="Numer Grupy")]
         public int? GroupId { get; set; }
+
+        public Group Group { get; set; }
     }
 }

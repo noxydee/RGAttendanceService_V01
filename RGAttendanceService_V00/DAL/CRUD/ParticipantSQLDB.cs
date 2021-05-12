@@ -129,9 +129,16 @@ namespace RGAttendanceService_V00.DAL.CRUD
                     TargetParticipant.Id = Convert.ToInt32(reader["Id"]);
                     TargetParticipant.FirstName = Convert.ToString(reader["FirstName"]);
                     TargetParticipant.LastName = Convert.ToString(reader["LastName"]);
+                    TargetParticipant.DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]);
+                    TargetParticipant.Gender = Convert.ToString(reader["Gender"]);
+                    TargetParticipant.PhoneNumber = Convert.ToString(reader["PhoneNumber"]);
                     TargetParticipant.Age = Convert.ToInt32(reader["Age"]);
-
-                   
+                    TargetParticipant.Country = Convert.ToString(reader["Country"]);
+                    TargetParticipant.AddressCity = Convert.ToString(reader["AddressCity"]);
+                    TargetParticipant.AddressStreet = Convert.ToString(reader["AddressStreet"]);
+                    TargetParticipant.AddressNumber = Convert.ToString(reader["AddressNumber"]);
+                    TargetParticipant.GroupId = Convert.ToInt32(reader["GroupId"]);
+                    TargetParticipant.Group = GroupDB.Get(Convert.ToInt32(reader["GroupId"]));
                 }
                 Connection.Close();
                 return TargetParticipant;
@@ -161,11 +168,17 @@ namespace RGAttendanceService_V00.DAL.CRUD
                         Id = Convert.ToInt32(reader["Id"]),
                         FirstName = Convert.ToString(reader["FirstName"]),
                         LastName = Convert.ToString(reader["LastName"]),
+                        DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]),
+                        Gender = Convert.ToString(reader["Gender"]),
+                        PhoneNumber = Convert.ToString(reader["PhoneNumber"]),
                         Age = Convert.ToInt32(reader["Age"]),
-                        
-                        
+                        Country = Convert.ToString(reader["Country"]) ?? null,
+                        AddressCity = Convert.ToString(reader["AddressCity"]) ?? null,
+                        AddressStreet = Convert.ToString(reader["AddressStreet"])?? null,
+                        AddressNumber = Convert.ToString(reader["AddressNumber"])?? null,
+                        GroupId = Convert.ToInt32(reader["GroupId"]),
+                        Group = GroupDB.Get(Convert.ToInt32(reader["GroupId"])) ?? null,
                     };
-                    
                     TargetList.Add(x);
                 }
                 Connection.Close();
@@ -240,3 +253,8 @@ namespace RGAttendanceService_V00.DAL.CRUD
         }
     }
 }
+
+
+
+
+
