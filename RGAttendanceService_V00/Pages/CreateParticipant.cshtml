@@ -1,0 +1,94 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.CreateParticipantModel
+@{
+    ViewData["title"] = "Dodaj Uczestnika";
+}
+
+<body>
+    <div class="container">
+        <h1>Dodaj nowego zawodnika</h1>
+        <form class="form-check" method="post">
+            <div class="row mb-3">
+                <div class="col-sm-6">
+                    <h4><label asp-for="NewParticipant.FirstName" class="control-label"></label></h4>
+                    <input asp-for="NewParticipant.FirstName" class="form-control" />
+                    <span asp-validation-for="NewParticipant.FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6">
+                    <h4><label asp-for="NewParticipant.LastName" class="control-label"></label></h4>
+                    <input asp-for="NewParticipant.LastName" class="form-control" />
+                    <span asp-validation-for="NewParticipant.LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewParticipant.DateOfBirth" class="control-label"></label></h4>
+                    <input asp-for="NewParticipant.DateOfBirth" class="form-control" />
+                    <span asp-validation-for="NewParticipant.DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewParticipant.Age" class="control-label"></label></h4>
+                    <input asp-for="NewParticipant.Age" class="form-control"/>
+                    <span asp-validation-for="NewParticipant.Age" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewParticipant.Gender" class="control-label"></label></h4>
+                    <select list="GenderList" asp-for="NewParticipant.Gender" class="form-control">
+                        <option>Kobieta</option>
+                        <option>Mężczyzna</option>
+                        <option>Inna</option>
+                        <option>Helikopter Bojowy</option>
+                    </select>
+                    <span asp-validation-for="NewParticipant.Gender" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-6">
+                    <h4><label asp-for="NewParticipant.PhoneNumber" class="control-label"></label></h4>
+                    <input asp-for="NewParticipant.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="NewParticipant.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6">
+                    <h4><label asp-for="GroupList[0].Name" class="control-label"></label></h4>
+                    <select asp-for="NewParticipant.GroupId" class="form-control">
+                        @foreach (var Group in Model.GroupList)
+                        {
+                            <option value="@Group.Id">@Group.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="NewParticipant.GroupId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <h4><label asp-for="NewParticipant.Country" class="control-label"></label></h4>
+                    <input asp-for="NewParticipant.Country" class="form-control" value="Polska"/>
+                    <span asp-validation-for="NewParticipant.Country" class="text-danger"></span>
+                </div>
+                <div class="col-sm-3">
+                    <h4><label asp-for="NewParticipant.AddressCity" class="control-label"></label></h4>
+                    <input asp-for="NewParticipant.AddressCity" class="form-control" value="Białystok"/>
+                    <span asp-validation-for="NewParticipant.AddressCity" class="text-danger"></span>
+                </div>
+                <div class="col-sm-3">
+                    <h4><label asp-for="NewParticipant.AddressStreet" class="control-label"></label></h4>
+                    <input asp-for="NewParticipant.AddressStreet" class="form-control" />
+                    <span asp-validation-for="NewParticipant.AddressStreet" class="text-danger"></span>
+                </div>
+                <div class="col-sm-3">
+                    <h4><label asp-for="NewParticipant.AddressNumber" class="control-label"></label></h4>
+                    <input asp-for="NewParticipant.AddressNumber" class="form-control" />
+                    <span asp-validation-for="NewParticipant.AddressNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row justify-content-center form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary btn-lg mt-5 submitButtonCustom">Zatwierdź</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</body>
