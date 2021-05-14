@@ -9,14 +9,14 @@ namespace RGAttendanceService_V00.Models
     public class Coach
     {
         public int Id { get; set; }
-        [Display(Name = "Imię")]
+        [Display(Name = "Imię trenera")]
         [Required(ErrorMessage = "Pole imie jest wymagane")]
         public string FirstName { get; set; }
-        [Display(Name = "Nazwisko")]
+        [Display(Name = "Nazwisko trenera")]
         [Required(ErrorMessage = "Pole nazwisko jest wymagane")]
         public string LastName { get; set; }
         [Display(Name = "Wiek")]
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
     }
 }

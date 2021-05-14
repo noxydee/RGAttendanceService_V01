@@ -1,0 +1,35 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.CreateCoachModel
+@{
+    ViewData["title"] = "Dodaj trenera";
+}
+
+<body>
+    <div class="container">
+        <h1>Dodaj nowego trenera</h1>
+        <form class="form-check" method="post">
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewCoach.FirstName" class="control-label"></label></h4>
+                    <input asp-for="NewCoach.FirstName" class="form-control" />
+                    <span asp-validation-for="NewCoach.FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewCoach.LastName" class="control-label"></label></h4>
+                    <input asp-for="NewCoach.LastName" class="form-control" />
+                    <span asp-validation-for="NewCoach.LastName" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewCoach.Age" class="control-label"></label></h4>
+                    <input asp-for="NewCoach.Age" class="form-control" />
+                    <span asp-validation-for="NewCoach.Age" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row justify-content-center form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary btn-lg mt-5 submitButtonCustom">Zatwierdź</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

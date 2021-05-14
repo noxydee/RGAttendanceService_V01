@@ -20,5 +20,8 @@ namespace RGAttendanceService_V00.Models
         public string City { get; set; }
         [Display(Name ="Numer")]
         public string Number { get; set; }
+        public int? CoachId { get; set; }
+
+        public Coach Coach { get; set; }
     }
 }

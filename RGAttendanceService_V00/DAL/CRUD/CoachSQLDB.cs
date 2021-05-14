@@ -29,19 +29,19 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter IdParam = new SqlParameter("@Id", SqlDbType.Int);
-                IdParam.Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(IdParam);
-
                 SqlParameter FirstNameParam = new SqlParameter("@FirstName", SqlDbType.NVarChar, 50);
-                FirstNameParam.Value = _coach.FirstName;
-                cmd.Parameters.Add(FirstNameParam);
-
                 SqlParameter LastNameParam = new SqlParameter("@LastName", SqlDbType.NVarChar, 100);
-                LastNameParam.Value = _coach.LastName;
-                cmd.Parameters.Add(LastNameParam);
-
                 SqlParameter AgeParam = new SqlParameter("@Age", SqlDbType.Int);
-                AgeParam.Value = _coach.Age;
+
+                IdParam.Direction = ParameterDirection.Output;
+
+                FirstNameParam.Value = _coach.FirstName;
+                LastNameParam.Value = _coach.LastName;
+                AgeParam.Value = (_coach.Age ?? (object)DBNull.Value);
+
+                cmd.Parameters.Add(IdParam);
+                cmd.Parameters.Add(FirstNameParam);
+                cmd.Parameters.Add(LastNameParam);
                 cmd.Parameters.Add(AgeParam);
 
                 Connection.Open();
@@ -50,7 +50,8 @@ namespace RGAttendanceService_V00.DAL.CRUD
             }
             catch (Exception ex)
             {
-
+                Connection.Close();
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 return 1;
             }
             return 0;
@@ -98,14 +99,14 @@ namespace RGAttendanceService_V00.DAL.CRUD
                     TargetCoach.Id = Convert.ToInt32(reader["Id"]);
                     TargetCoach.FirstName = Convert.ToString(reader["FirstName"]);
                     TargetCoach.LastName = Convert.ToString(reader["LastName"]);
-                    TargetCoach.Age = Convert.ToInt32(reader["Age"]);
+                    TargetCoach.Age = reader["Age"] == DBNull.Value ? null : Convert.ToInt32(reader["Age"]);
                 }
                 Connection.Close();
                 return TargetCoach;
             }
             catch (Exception ex)
             {
-
+                Connection.Close();
                 return null;
             }
         }
@@ -116,6 +117,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
             {
                 List<Coach> TargetList = new List<Coach>();
                 SqlCommand cmd = new SqlCommand("sp_GetCoachList", Connection);
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 Connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -125,7 +127,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
                     x.Id = Convert.ToInt32(reader["Id"]);
                     x.FirstName = Convert.ToString(reader["FirstName"]);
                     x.LastName = Convert.ToString(reader["LastName"]);
-                    x.Age = Convert.ToInt32(reader["Age"]);
+                    x.Age = reader["Age"] == DBNull.Value ? null : Convert.ToInt32(reader["Age"]);
                     TargetList.Add(x);
                 }
                 Connection.Close();
@@ -133,8 +135,9 @@ namespace RGAttendanceService_V00.DAL.CRUD
             }
             catch (Exception ex)
             {
-
-                return null;
+                Connection.Close();
+                List<Coach> List = new List<Coach>();
+                return List;
             }
         }
 
@@ -146,19 +149,18 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter IdParam = new SqlParameter("@Id", SqlDbType.Int);
-                IdParam.Value = _coach.Id;
-                cmd.Parameters.Add(IdParam);
-
                 SqlParameter FirstNameParam = new SqlParameter("@FirstName", SqlDbType.NVarChar, 50);
-                FirstNameParam.Value = _coach.FirstName;
-                cmd.Parameters.Add(FirstNameParam);
-
                 SqlParameter LastNameParam = new SqlParameter("@LastName", SqlDbType.NVarChar, 100);
-                LastNameParam.Value = _coach.LastName;
-                cmd.Parameters.Add(LastNameParam);
-
                 SqlParameter AgeParam = new SqlParameter("@Age", SqlDbType.Int);
-                AgeParam.Value = _coach.Age;
+
+                IdParam.Value = _coach.Id;
+                FirstNameParam.Value = _coach.FirstName;
+                LastNameParam.Value = _coach.LastName;
+                AgeParam.Value = (_coach.Age ?? (object)DBNull.Value);
+
+                cmd.Parameters.Add(IdParam);
+                cmd.Parameters.Add(FirstNameParam);
+                cmd.Parameters.Add(LastNameParam);
                 cmd.Parameters.Add(AgeParam);
 
                 Connection.Open();
@@ -167,7 +169,8 @@ namespace RGAttendanceService_V00.DAL.CRUD
             }
             catch (Exception ex)
             {
-
+                System.Diagnostics.Debug.WriteLine("siema");
+                Connection.Close();
                 return 1;
             }
             return 0;

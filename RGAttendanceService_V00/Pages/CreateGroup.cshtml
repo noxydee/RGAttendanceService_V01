@@ -1,0 +1,64 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.CreateGroupModel
+@{
+    ViewData["title"] = "Dodaj grupe";
+}
+
+<body>
+    <div class="container">
+        <h1>Dodaj nową grupe</h1>
+        <form class="form-check" method="post">
+            <div class="row mb-3">
+                <div class="col-sm-6">
+                    <h4><label asp-for="NewGroup.Name" class="control-label"></label></h4>
+                    <input asp-for="NewGroup.Name" class="form-control" />
+                    <span asp-validation-for="NewGroup.Name" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6">
+                    <h4><label asp-for="NewGroup.type" class="control-label"></label></h4>
+                    <select asp-for="NewGroup.type" class="form-control">
+                        <option>Naborowa</option>
+                        <option>Zaawansowana</option>
+                        <option>Średnio Zaawansowana</option>
+                        <option>Wycznowa</option>
+                    </select>
+                    <span asp-validation-for="NewGroup.type" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewGroup.City" class="control-label"></label></h4>
+                    <input asp-for="NewGroup.City" class="form-control" />
+                    <span asp-validation-for="NewGroup.City" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewGroup.Street" class="control-label"></label></h4>
+                    <input asp-for="NewGroup.Street" class="form-control" />
+                    <span asp-validation-for="NewGroup.Street" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewGroup.Number" class="control-label"></label></h4>
+                    <input asp-for="NewGroup.Number" class="form-control" />
+                    <span asp-validation-for="NewGroup.Number" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <h4><label asp-for="NewGroup.CoachId" class="control-label"></label></h4>
+                    <select list="GenderList" asp-for="NewGroup.CoachId" class="form-control">
+                        @foreach(var coach in Model.CoachList)
+                        {
+                            <option value="@coach.Id">@coach.FirstName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="NewGroup.CoachId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row justify-content-center form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary btn-lg mt-5 submitButtonCustom">Zatwierdź</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

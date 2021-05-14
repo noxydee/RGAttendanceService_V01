@@ -30,28 +30,29 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter IdParam = new SqlParameter("@Id", SqlDbType.Int);
-                IdParam.Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(IdParam);
-
                 SqlParameter NameParam = new SqlParameter("@Name", SqlDbType.NVarChar, 200);
-                NameParam.Value = _group.Name;
-                cmd.Parameters.Add(NameParam);
-
                 SqlParameter TypeParam = new SqlParameter("@Type", SqlDbType.NVarChar, 30);
-                TypeParam.Value = _group.type;
-                cmd.Parameters.Add(TypeParam);
-
                 SqlParameter StreetParam = new SqlParameter("@Street", SqlDbType.NVarChar, 100);
-                StreetParam.Value = _group.Street;
-                cmd.Parameters.Add(StreetParam);
-
                 SqlParameter CityParam = new SqlParameter("@City", SqlDbType.NVarChar, 100);
-                CityParam.Value = _group.City;
-                cmd.Parameters.Add(CityParam);
-
                 SqlParameter NumberParam = new SqlParameter("@Number", SqlDbType.NVarChar, 10);
-                NumberParam.Value = _group.Number;
+                SqlParameter MainCoachParam = new SqlParameter("@MainCoach", SqlDbType.Int);
+
+                IdParam.Direction = ParameterDirection.Output;
+                NameParam.Value = _group.Name;
+
+                TypeParam.Value = (_group.type ?? (object)DBNull.Value);
+                StreetParam.Value = (_group.Street ?? (object)DBNull.Value);
+                CityParam.Value = (_group.City ?? (object)DBNull.Value);
+                NumberParam.Value = (_group.Number ?? (object)DBNull.Value);
+                MainCoachParam.Value = (_group.CoachId ?? (object)DBNull.Value);
+
+                cmd.Parameters.Add(IdParam);
+                cmd.Parameters.Add(NameParam);
+                cmd.Parameters.Add(TypeParam);
+                cmd.Parameters.Add(StreetParam);
+                cmd.Parameters.Add(CityParam);
                 cmd.Parameters.Add(NumberParam);
+                cmd.Parameters.Add(MainCoachParam);
 
                 Connection.Open();
                 cmd.ExecuteNonQuery();
@@ -59,6 +60,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
             }
             catch (Exception ex)
             {
+                Connection.Close();
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 return 1;
             }
@@ -82,7 +84,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
             }
             catch (Exception ex)
             {
-
+                Connection.Close();
                 return 1;
             }
             return 0;
@@ -108,17 +110,18 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 {
                     TargetGroup.Id = Convert.ToInt32(reader["Id"]);
                     TargetGroup.Name = Convert.ToString(reader["Name"]);
-                    TargetGroup.type = Convert.ToString(reader["Type"]);
-                    TargetGroup.Street = Convert.ToString(reader["Street"]);
-                    TargetGroup.City = Convert.ToString(reader["City"]);
-                    TargetGroup.Number = Convert.ToString(reader["Number"]);
+                    TargetGroup.type = reader["Type"] == DBNull.Value ? null : Convert.ToString(reader["Type"]);
+                    TargetGroup.Street = reader["Street"] == DBNull.Value ? null : Convert.ToString(reader["Street"]);
+                    TargetGroup.City = reader["City"] == DBNull.Value ? null : Convert.ToString(reader["City"]);
+                    TargetGroup.Number = reader["Number"] == DBNull.Value ? null : Convert.ToString(reader["Number"]);
+                    TargetGroup.CoachId = reader["MainCoach"] == DBNull.Value ? null : Convert.ToInt32(reader["MainCoach"]);
                 }
                 Connection.Close();
                 return TargetGroup;
             }
             catch (Exception ex)
             {
-
+                Connection.Close();
                 return null;
             }
         }
@@ -139,10 +142,11 @@ namespace RGAttendanceService_V00.DAL.CRUD
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         Name = Convert.ToString(reader["Name"]),
-                        type = Convert.ToString(reader["Type"]),
-                        Street = Convert.ToString(reader["Street"]),
-                        City = Convert.ToString(reader["City"]),
-                        Number = Convert.ToString(reader["Number"])
+                        type = reader["Type"] == DBNull.Value ? null : Convert.ToString(reader["Type"]),
+                        Street = reader["Street"] == DBNull.Value ? null : Convert.ToString(reader["Street"]),
+                        City = reader["City"] == DBNull.Value ? null : Convert.ToString(reader["City"]),
+                        Number = reader["Number"] == DBNull.Value ? null : Convert.ToString(reader["Number"]),
+                        CoachId = reader["MainCoach"] == DBNull.Value ? null : Convert.ToInt32(reader["MainCoach"])
                     };
                     TargetList.Add(x);
                 }
@@ -151,6 +155,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
             }
             catch (Exception ex)
             {
+                Connection.Close();
                 List<Group> x = new List<Group>();
                 return x;
             }
@@ -164,28 +169,29 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter IdParam = new SqlParameter("@Id", SqlDbType.Int);
-                IdParam.Value = _group.Id;
-                cmd.Parameters.Add(IdParam);
-
                 SqlParameter NameParam = new SqlParameter("@Name", SqlDbType.NVarChar, 200);
-                NameParam.Value = _group.Name;
-                cmd.Parameters.Add(NameParam);
-
                 SqlParameter TypeParam = new SqlParameter("@Type", SqlDbType.NVarChar, 30);
-                TypeParam.Value = _group.type;
-                cmd.Parameters.Add(TypeParam);
-
                 SqlParameter StreetParam = new SqlParameter("@Street", SqlDbType.NVarChar, 100);
-                StreetParam.Value = _group.Street;
-                cmd.Parameters.Add(StreetParam);
-
                 SqlParameter CityParam = new SqlParameter("@City", SqlDbType.NVarChar, 100);
-                CityParam.Value = _group.City;
-                cmd.Parameters.Add(CityParam);
-
                 SqlParameter NumberParam = new SqlParameter("@Number", SqlDbType.NVarChar, 10);
-                NumberParam.Value = _group.Number;
+                SqlParameter MainCoachParam = new SqlParameter("@MainCoach", SqlDbType.Int);
+
+                IdParam.Value = _group.Id;
+                NameParam.Value = _group.Name;
+
+                TypeParam.Value = (_group.type ?? (object)DBNull.Value);
+                StreetParam.Value = (_group.Street ?? (object)DBNull.Value);
+                CityParam.Value = (_group.City ?? (object)DBNull.Value);
+                NumberParam.Value = (_group.Number ?? (object)DBNull.Value);
+                MainCoachParam.Value = (_group.CoachId ?? (object)DBNull.Value);
+
+                cmd.Parameters.Add(IdParam);
+                cmd.Parameters.Add(NameParam);
+                cmd.Parameters.Add(TypeParam);
+                cmd.Parameters.Add(StreetParam);
+                cmd.Parameters.Add(CityParam);
                 cmd.Parameters.Add(NumberParam);
+                cmd.Parameters.Add(MainCoachParam);
 
                 Connection.Open();
                 cmd.ExecuteNonQuery();
@@ -193,6 +199,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
             }
             catch (Exception ex)
             {
+                Connection.Close();
                 return 1;
             }
             return 0;

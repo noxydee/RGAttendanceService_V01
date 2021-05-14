@@ -27,8 +27,22 @@ namespace RGAttendanceService_V00.Pages
         public void OnGet()
         {
 
-
-
         }
+
+        public IActionResult OnGetDeleteParticipant(int Id)
+        {
+            try
+            {
+                ParticipantDB.Delete(Id);
+                return RedirectToPage("ParticipantsList");
+            }
+            catch (Exception ex)
+            {
+
+                return RedirectToPage("ParticipantsList");
+            }
+        }
+
+
     }
 }

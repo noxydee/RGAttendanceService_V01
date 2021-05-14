@@ -1,0 +1,37 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.EditCoachModel
+@{
+    ViewData["title"] = "Edytuj trenera";
+}
+
+<body>
+    <div class="container">
+        <h1>Edytuj trenera</h1>
+        <form class="form-check" method="post">
+            <input asp-for="EditCoach.Id" type="hidden"/>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <h4><label asp-for="EditCoach.FirstName" class="control-label"></label></h4>
+                    <input asp-for="EditCoach.FirstName" class="form-control" />
+                    <span asp-validation-for="EditCoach.FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="EditCoach.LastName" class="control-label"></label></h4>
+                    <input asp-for="EditCoach.LastName" class="form-control" />
+                    <span asp-validation-for="EditCoach.LastName" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="EditCoach.Age" class="control-label"></label></h4>
+                    <input asp-for="EditCoach.Age" class="form-control" />
+                    <span asp-validation-for="EditCoach.Age" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row justify-content-center form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary btn-lg mt-5 submitButtonCustom">Zatwierdź</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+

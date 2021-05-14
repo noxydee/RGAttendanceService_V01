@@ -23,7 +23,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
             ConnectionString = _configuration.GetConnectionString("RGAttendanceService");
             Connection.ConnectionString = ConnectionString;
             GroupDB = new GroupSQLDB(_configuration);
-    }
+        }
         public int Add(Participant _participant)
         {
             try
@@ -38,7 +38,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 SqlParameter GenderParam = new SqlParameter("@Gender", SqlDbType.NVarChar, 20);
                 SqlParameter PhoneNumberParam = new SqlParameter("@PhoneNumber", SqlDbType.NVarChar, 15);
                 SqlParameter AgeParam = new SqlParameter("@Age", SqlDbType.Int);
-                SqlParameter CountryParam = new SqlParameter("@Country", SqlDbType.NVarChar,100);
+                SqlParameter CountryParam = new SqlParameter("@Country", SqlDbType.NVarChar, 100);
                 SqlParameter AddressCityParam = new SqlParameter("@AddressCity", SqlDbType.NVarChar, 100);
                 SqlParameter AddressStreetParam = new SqlParameter("@AddressStreet", SqlDbType.NVarChar, 100);
                 SqlParameter AddressNumberParam = new SqlParameter("@AddressNumber", SqlDbType.NVarChar, 20);
@@ -76,7 +76,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 cmd.ExecuteNonQuery();
                 Connection.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //future error log listing
                 System.Diagnostics.Debug.WriteLine(ex.Message);
@@ -124,21 +124,21 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 Connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                while(reader.Read())
+                while (reader.Read())
                 {
                     TargetParticipant.Id = Convert.ToInt32(reader["Id"]);
                     TargetParticipant.FirstName = Convert.ToString(reader["FirstName"]);
                     TargetParticipant.LastName = Convert.ToString(reader["LastName"]);
-                    TargetParticipant.DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]);
+                    TargetParticipant.DateOfBirth = reader["DateOfBirth"] == DBNull.Value ? null : Convert.ToDateTime(reader["DateOfBirth"]);
                     TargetParticipant.Gender = Convert.ToString(reader["Gender"]);
-                    TargetParticipant.PhoneNumber = Convert.ToString(reader["PhoneNumber"]);
-                    TargetParticipant.Age = Convert.ToInt32(reader["Age"]);
-                    TargetParticipant.Country = Convert.ToString(reader["Country"]);
-                    TargetParticipant.AddressCity = Convert.ToString(reader["AddressCity"]);
-                    TargetParticipant.AddressStreet = Convert.ToString(reader["AddressStreet"]);
-                    TargetParticipant.AddressNumber = Convert.ToString(reader["AddressNumber"]);
-                    TargetParticipant.GroupId = Convert.ToInt32(reader["GroupId"]);
-                    TargetParticipant.Group = GroupDB.Get(Convert.ToInt32(reader["GroupId"]));
+                    TargetParticipant.PhoneNumber = reader["PhoneNumber"] == DBNull.Value ? null : Convert.ToString(reader["PhoneNumber"]);
+                    TargetParticipant.Age = reader["Age"] == DBNull.Value ? null : Convert.ToInt32(reader["Age"]);
+                    TargetParticipant.Country = reader["Country"] == DBNull.Value ? null : Convert.ToString(reader["Country"]);
+                    TargetParticipant.AddressCity = reader["AddressCity"] == DBNull.Value ? null : Convert.ToString(reader["AddressCity"]);
+                    TargetParticipant.AddressStreet = reader["AddressStreet"] == DBNull.Value ? null : Convert.ToString(reader["AddressStreet"]);
+                    TargetParticipant.AddressNumber = reader["AddressNumber"] == DBNull.Value ? null : Convert.ToString(reader["AddressNumber"]);
+                    TargetParticipant.GroupId = reader["GroupId"] == DBNull.Value ? null : Convert.ToInt32(reader["GroupId"]);
+                    TargetParticipant.Group = reader["GroupId"] == DBNull.Value ? null : GroupDB.Get(Convert.ToInt32(reader["GroupId"]));
                 }
                 Connection.Close();
                 return TargetParticipant;
@@ -161,23 +161,23 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 Connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                while(reader.Read())
+                while (reader.Read())
                 {
                     Participant x = new Participant
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         FirstName = Convert.ToString(reader["FirstName"]),
                         LastName = Convert.ToString(reader["LastName"]),
-                        DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]),
+                        DateOfBirth = reader["DateOfBirth"] == DBNull.Value ? null : Convert.ToDateTime(reader["DateOfBirth"]),
                         Gender = Convert.ToString(reader["Gender"]),
-                        PhoneNumber = Convert.ToString(reader["PhoneNumber"]),
-                        Age = Convert.ToInt32(reader["Age"]),
-                        Country = Convert.ToString(reader["Country"]) ?? null,
-                        AddressCity = Convert.ToString(reader["AddressCity"]) ?? null,
-                        AddressStreet = Convert.ToString(reader["AddressStreet"])?? null,
-                        AddressNumber = Convert.ToString(reader["AddressNumber"])?? null,
-                        GroupId = Convert.ToInt32(reader["GroupId"]),
-                        Group = GroupDB.Get(Convert.ToInt32(reader["GroupId"])) ?? null,
+                        PhoneNumber = reader["PhoneNumber"] == DBNull.Value ? null : Convert.ToString(reader["PhoneNumber"]),
+                        Age = reader["Age"] == DBNull.Value ? null : Convert.ToInt32(reader["Age"]),
+                        Country = reader["Country"] == DBNull.Value ? null : Convert.ToString(reader["Country"]),
+                        AddressCity = reader["AddressCity"] == DBNull.Value ? null : Convert.ToString(reader["AddressCity"]),
+                        AddressStreet = reader["AddressStreet"] == DBNull.Value ? null : Convert.ToString(reader["AddressStreet"]),
+                        AddressNumber = reader["AddressNumber"] == DBNull.Value ? null : Convert.ToString(reader["AddressNumber"]),
+                        GroupId = reader["GroupId"] == DBNull.Value ? null : Convert.ToInt32(reader["GroupId"]),
+                        Group = reader["GroupId"] == DBNull.Value ? null : GroupDB.Get(Convert.ToInt32(reader["GroupId"])),
                     };
                     TargetList.Add(x);
                 }

@@ -1,0 +1,65 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.EditGroupModel
+@{
+    ViewData["title"] = "Edytuj Grupe";
+}
+
+<body>
+    <div class="container">
+        <h1>Dodaj nową grupe</h1>
+        <form class="form-check" method="post">
+            <input asp-for="EditGroup.Id" type="hidden"/>
+            <div class="row mb-3">
+                <div class="col-sm-6">
+                    <h4><label asp-for="EditGroup.Name" class="control-label"></label></h4>
+                    <input asp-for="EditGroup.Name" class="form-control" />
+                    <span asp-validation-for="EditGroup.Name" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6">
+                    <h4><label asp-for="EditGroup.type" class="control-label"></label></h4>
+                    <select asp-for="EditGroup.type" class="form-control">
+                        <option>Naborowa</option>
+                        <option>Zaawansowana</option>
+                        <option>Średnio Zaawansowana</option>
+                        <option>Wycznowa</option>
+                    </select>
+                    <span asp-validation-for="EditGroup.type" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <h4><label asp-for="EditGroup.City" class="control-label"></label></h4>
+                    <input asp-for="EditGroup.City" class="form-control" />
+                    <span asp-validation-for="EditGroup.City" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="EditGroup.Street" class="control-label"></label></h4>
+                    <input asp-for="EditGroup.Street" class="form-control" />
+                    <span asp-validation-for="EditGroup.Street" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <h4><label asp-for="EditGroup.Number" class="control-label"></label></h4>
+                    <input asp-for="EditGroup.Number" class="form-control" />
+                    <span asp-validation-for="EditGroup.Number" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <h4><label asp-for="EditGroup.CoachId" class="control-label"></label></h4>
+                    <select list="GenderList" asp-for="EditGroup.CoachId" class="form-control">
+                        @foreach (var coach in Model.CoachList)
+                        {
+                            <option value="@coach.Id">@coach.FirstName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="EditGroup.CoachId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row justify-content-center form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary btn-lg mt-5 submitButtonCustom">Zatwierdź</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

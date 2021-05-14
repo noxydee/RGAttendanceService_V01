@@ -1,0 +1,35 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.CoachesListModel
+@{
+    ViewData["title"] = "Lista trenerów";
+}
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => Model.List[0].FirstName)</th>
+                <th scope="col">@Html.DisplayNameFor(model => Model.List[0].LastName)</th>
+                <th scope="col">@Html.DisplayNameFor(model => Model.List[0].Age)</th>
+                <th>akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var coach in Model.List)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(c => coach.FirstName)</th>
+                    <th scope="row">@Html.DisplayFor(c => coach.LastName)</th>
+                    <th scope="row">@Html.DisplayFor(c => coach.Age)</th>
+                    <th>
+                        <a type="submit" class="btn btn-secondary submitButtonCustom" asp-page="EditCoach" asp-route-id="@coach.Id">Edytuj</a>
+                        <a type="submit" class="btn btn-secondary submitButtonCustom" asp-page-handler="DeleteCoach" asp-route-id="@coach.Id">Usuń</a>
+                    </th>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+
+</body>

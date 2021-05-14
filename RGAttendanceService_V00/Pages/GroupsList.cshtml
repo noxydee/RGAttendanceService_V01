@@ -1,0 +1,39 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.GroupsListModel
+@{
+    ViewData["title"] = "Lista grup";
+}
+
+<body>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => Model.List[0].Name)</th>
+                <th scope="col">@Html.DisplayNameFor(model => Model.List[0].type)</th>
+                <th scope="col">@Html.DisplayNameFor(model => Model.List[0].Coach.FirstName)</th>
+                <th scope="col">Akcja</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach(var Group in Model.List)
+            {
+            <tr>
+                <th scope="row">@Html.DisplayFor(g => Group.Name)</th>
+                <th scope="row">@Html.DisplayFor(g => Group.type)</th>
+                <th scope="row">@Html.DisplayFor(g => Group.Coach.FirstName)</th>
+                <th>
+                    <a type="submit" class="btn btn-secondary submitButtonCustom" asp-page="EditGroup" asp-route-id="@Group.Id">Edytuj</a>
+                    <a type="submit" class="btn btn-secondary submitButtonCustom" asp-page-handler="DeleteGroup" asp-route-id=@Group.Id>Usuń</a>
+                </th>
+
+            </tr>
+            }
+
+
+        </tbody>
+
+    </table>
+
+</body>

@@ -15,20 +15,41 @@ namespace RGAttendanceService_V00.Pages
     {
         private IConfiguration _configuartion;
         private IParticipant ParticipantDB;
-        [BindProperty]
+        private IGroup GroupDB;
         public Participant EditParticipant { get; set; }
 
         public List<Group> GroupList = new List<Group>();
 
-        public EditParticipantModel(IConfiguration _configuartion,IParticipant ParticipantDB)
+        public EditParticipantModel(IConfiguration _configuartion,IParticipant ParticipantDB,IGroup GroupDB)
         {
             this._configuartion = _configuartion;
             this.ParticipantDB = ParticipantDB;
+            this.GroupDB = GroupDB;
+            GroupList = GroupDB.GetList();
         }
-        public void OnGet(int _id)
+        public void OnGet(int Id)
         {
-            EditParticipant = ParticipantDB.Get(_id);
+            EditParticipant = ParticipantDB.Get(Id);
 
         }
+
+        public IActionResult OnPost (Participant EditParticipant)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    ParticipantDB.Update(EditParticipant);
+                    return RedirectToPage("ParticipantsList");
+                }
+                return Page();
+            }
+            catch (Exception ex)
+            {
+
+                return RedirectToPage("Index");
+            }
+        }
+
     }
 }
