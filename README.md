@@ -7,9 +7,9 @@ Service to check,keep track on and store attendance raports from extracurricular
 Service also keep data about contact information to parents, participants and data about groups and coaches
 
 #Build With
-ASP.NET Razor Pages
-ADO.NET (only for sake of learning) 
-Entity Framework Core (still in progress)
-SQL Server Express
-Bootstrap
+*ASP.NET Razor Pages
+*ADO.NET (only for sake of learning) 
+*Entity Framework Core (still in progress)
+*SQL Server Express
+*Bootstrap
 
