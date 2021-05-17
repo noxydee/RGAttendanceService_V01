@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RGAttendanceService_V00.DAL;
 using RGAttendanceService_V00.DAL.CRUD;
+using RGAttendanceService_V00.DAL.Interfaces;
 
 namespace RGAttendanceService_V00
 {
@@ -29,12 +30,30 @@ namespace RGAttendanceService_V00
             services.AddMvc().AddSessionStateTempDataProvider();
             services.AddSession();
 
-            services.AddRazorPages();
+            services.AddAuthentication("CookieAuthentication")
+                .AddCookie("CookieAuthentication", config =>
+                {
+                    config.Cookie.HttpOnly = true;
+                    config.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.None;
+                    config.Cookie.Name = "UserLoginCookie";
+                    config.LoginPath = "/Login/RGLogin";
+                    config.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+                });
+
+            services.AddRazorPages(options => {
+                options.Conventions.AuthorizeFolder("/ParticipantManage");
+                options.Conventions.AuthorizeFolder("/GroupManage");
+                options.Conventions.AuthorizeFolder("/CoachManage");
+                options.Conventions.AuthorizePage("/AttendanceCheck");
+                options.Conventions.AuthorizePage("/AttendanceCheckUp");
+            });
             
             services.Add(new ServiceDescriptor(typeof(IParticipant), new ParticipantSQLDB(Configuration)));
-
+            
             services.Add(new ServiceDescriptor(typeof(IGroup), new GroupSQLDB(Configuration)));
             services.Add(new ServiceDescriptor(typeof(ICoach), new CoachSQLDB(Configuration)));
+            services.Add(new ServiceDescriptor(typeof(IUser), new UserSQLDB(Configuration)));
+            services.Add(new ServiceDescriptor(typeof(IAttendance), new AttendanceSQLDB(Configuration)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +74,9 @@ namespace RGAttendanceService_V00
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

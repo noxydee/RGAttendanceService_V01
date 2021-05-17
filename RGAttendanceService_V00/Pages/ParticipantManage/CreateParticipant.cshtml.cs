@@ -15,15 +15,17 @@ namespace RGAttendanceService_V00.Pages
     {
         private IConfiguration _configuration;
         private IParticipant ParticipantDB;
+        private IGroup GroupDB;
 
         public List<Group> GroupList = new List<Group>();
 
         [BindProperty]
         public Participant NewParticipant { get; set; }
-        public CreateParticipantModel(IConfiguration _configuration,IParticipant ParticipantDB)
+        public CreateParticipantModel(IConfiguration _configuration,IParticipant ParticipantDB,IGroup GroupDB)
         {
             this._configuration = _configuration;
             this.ParticipantDB = ParticipantDB;
+            GroupList = GroupDB.GetList();
         }
         public void OnGet()
         {

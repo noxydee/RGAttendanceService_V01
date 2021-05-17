@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using RGAttendanceService_V00.DAL;
 using RGAttendanceService_V00.Models;
+using RGAttendanceService_V00.DAL.Interfaces;
 
 namespace RGAttendanceService_V00.Pages
 {
@@ -22,12 +23,12 @@ namespace RGAttendanceService_V00.Pages
         {
             this._configuration = _configuration;
             this.CoachDB = CoachDB;
-
         }
 
         public void OnGet(int Id)
         {
             EditCoach = CoachDB.Get(Id);
+
         }
 
         public IActionResult OnPost(Coach EditCoach)

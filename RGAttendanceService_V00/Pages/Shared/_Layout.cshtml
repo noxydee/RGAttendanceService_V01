@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/StyleSheetBackGround.css" />
+    <link rel="stylesheet" href="~/css/CheckBoxStyle.css" />
 </head>
 <body>
     <header>
@@ -25,25 +26,28 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/AttendanceCheckUp">Sprawdź obecność</a>
+                        </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Uczestnik</a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/CreateParticipant">Dodaj</a>
-                                <a class="nav-link text-dark" asp-area="" asp-page="/ParticipantsList">Wyświetl</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ParticipantManage/CreateParticipant">Dodaj</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ParticipantManage/ParticipantsList">Wyświetl</a>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Grupa</a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/CreateGroup">Dodaj</a>
-                                <a class="nav-link text-dark" asp-area="" asp-page="/GroupsList">Wyświetl</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/GroupManage/CreateGroup">Dodaj</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/GroupManage/GroupsList">Wyświetl</a>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Trener</a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/CreateCoach">Dodaj</a>
-                                <a class="nav-link text-dark" asp-area="" asp-page="/CoachesList">Wyświetl</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/CoachManage/CreateCoach">Dodaj</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/CoachManage/CoachesList">Wyświetl</a>
                             </ul>
                         </li>
                     </ul>

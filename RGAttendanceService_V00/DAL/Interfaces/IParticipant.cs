@@ -13,5 +13,6 @@ namespace RGAttendanceService_V00.DAL
         public int Add(Participant _participant);
         public int Update(Participant _participant);
         public int Delete(int _id);
+        public List<Participant> GetListByGroupId(int _id);
     }
 }

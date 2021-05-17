@@ -1,0 +1,32 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.Login.RGLoginModel
+@{
+    ViewData["title"] = "Logowanie";
+}
+
+<body>
+    <div class="container">
+        <form class="form-horizontal" method="post">
+            <div class="form-group">
+                <label asp-for="RGUser.UserName" class="control-label">Nazwa użytkownika lub Email</label>
+                <div class="col-sm-6">
+                    <input asp-for="RGUser.UserName" class="form-control">
+                    <span asp-validation-for="RGUser.UserName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="RGUser.Password" class="control-label col-sm2"></label>
+                <div class="col-sm-6">
+                    <input type="password" asp-for="RGUser.Password" class="form-control">
+                    <span asp-validation-for="RGUser.Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn btn-primary submitx">Zatwierdź</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>

@@ -1,0 +1,45 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.AttendanceCheckUpModel
+@{
+    ViewData["title"] = "Sprawdz obecność";
+}
+
+<head>
+
+</head>
+
+<body>
+    <form class="form-horizontal" method="post">
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label asp-for="PreCheck.Date" class="control-label col-sm2"></label>
+                <input asp-for="PreCheck.Date" type="datetime-local" class="form-control"/>
+                <span asp-validation-for="PreCheck.Date" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6"></div>
+
+            <div class="col-sm-6">
+                <label asp-for="PreCheck.GroupId" class="control-label col-sm2"></label>
+                <select asp-for="PreCheck.GroupId" class="form-control">
+                    @foreach (var Group in Model.GroupList)
+                    {
+                        <option value="@Group.Id">@Group.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="PreCheck.GroupId" class="text-danger"></span>
+                <span asp-validation-for="PreCheck.CoachId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                
+                <button type="submit" class="btn btn-primary btn-lg mt-5 submitButtonCustom">Zatwierdź</button>
+            </div>
+        </div>
+
+
+    </form>
+
+
+</body>
