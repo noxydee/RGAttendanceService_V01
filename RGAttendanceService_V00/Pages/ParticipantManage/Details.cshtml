@@ -1,0 +1,45 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.ParticipantManage.DetailsModel
+@{
+    ViewData["title"] = "Szczegóły";
+}
+
+<head>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Szczegóły</h1>
+            <div class="row mb-3">
+                <div class="col-sm-6">
+                    <h4><label asp-for="DetailParticipant.FirstName" class="control-label"></label></h4>
+                    <div>@Model.DetailParticipant.FirstName</div>
+                </div>
+                <div class="col-sm-6">
+                    <h4><label asp-for="DetailParticipant.LastName" class="control-label"></label></h4>
+                    <div>@Model.DetailParticipant.LastName</div>
+                </div>
+            </div>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(model => Model.AttendanceList[0].DateOfClass)</th>
+                        <th scope="col">Obecność</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var attendance in Model.AttendanceList)
+                    {
+                    <tr>
+                        <td scope="row">@Html.DisplayFor(a => attendance.DateOfClass)</td>
+                        <td scope="row">@(attendance.AbsenceStatus == true ? "Nieobecny" : "Obecny") </td>
+                    </tr>
+                    }
+                </tbody>
+
+            </table>
+        
+    </div>
+</body>

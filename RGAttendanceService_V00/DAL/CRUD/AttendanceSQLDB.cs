@@ -23,10 +23,6 @@ namespace RGAttendanceService_V00.DAL.CRUD
             ConnectionString = _configuration.GetConnectionString("RGAttendanceService");
             Connection.ConnectionString = ConnectionString;
         }
-        private int ConvertToBit(bool status)
-        {
-            return status == true ? 1 : 0;
-        }
 
         public int AddAttendance(Attendance attendance)
         {
@@ -93,6 +89,47 @@ namespace RGAttendanceService_V00.DAL.CRUD
         public List<Attendance> GetList()
         {
             throw new NotImplementedException();
+        }
+
+        public List<Attendance> GetParticipantAttendanceList(int _id)
+        {
+            try
+            {
+                List<Attendance> List = new List<Attendance>();
+                SqlCommand cmd = new SqlCommand("sp_GetAttendanceByParticipant", Connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter IdParam = new SqlParameter("@Id", SqlDbType.Int);
+                IdParam.Value = _id;
+                cmd.Parameters.Add(IdParam);
+
+                Connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    Attendance x = new Attendance
+                    {
+                        Id = Convert.ToInt32(reader["Id"]),
+                        ParticipantId = Convert.ToInt32(reader["ParticipantId"]),
+                        GroupId = Convert.ToInt32(reader["GroupId"]),
+                        DateOfClass = Convert.ToDateTime(reader["DateOfClass"]),
+                        DateOfCheck = reader["DateOfCheck"] == DBNull.Value ? null : Convert.ToDateTime(reader["DateOfCheck"]),
+                        AbsenceStatus = Convert.ToBoolean(reader["AbsenceStatus"]),
+                        AbsenceInfo = reader["AbsenceInfo"] == DBNull.Value ? null : Convert.ToString(reader["AbsenceInfo"]),
+                        CheckerId = Convert.ToInt32(reader["CheckerId"])
+                    };
+                    List.Add(x);
+                }
+
+                Connection.Close();
+                return List;
+            }
+            catch (Exception ex)
+            {
+                Connection.Close();
+                return null;
+            }
         }
 
         public int UpdateAttendance(Attendance attendance)

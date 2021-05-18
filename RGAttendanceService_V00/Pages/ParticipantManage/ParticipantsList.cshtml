@@ -22,6 +22,7 @@
                 <th scope="row">@Html.DisplayFor(p => Participant.LastName)</th>
                 <th scope="row">@Html.DisplayFor(p => Participant.Group.Name)</th>
                 <th>
+                    <a type="submit" class="btn btn-secondary submitButtonCustom" asp-page="Details" asp-route-id=@Participant.Id>Szczegóły</a>
                     <a type="submit" class="btn btn-secondary submitButtonCustom" asp-page="EditParticipant" asp-route-id=@Participant.Id>Edytuj</a>
                     <a type="submit" class="btn btn-secondary submitButtonCustom" asp-page-handler="DeleteParticipant" asp-route-id=@Participant.Id>Usuń</a>
                 </th>

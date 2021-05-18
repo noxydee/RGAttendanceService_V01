@@ -13,5 +13,6 @@ namespace RGAttendanceService_V00.DAL.Interfaces
         public int AddAttendance(Attendance attendance);
         public int UpdateAttendance(Attendance attendance);
         public int DeleteAttendance(int _id);
+        public List<Attendance> GetParticipantAttendanceList(int _id);
     }
 }
