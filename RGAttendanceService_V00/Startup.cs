@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using RGAttendanceService_V00.DAL;
 using RGAttendanceService_V00.DAL.CRUD;
 using RGAttendanceService_V00.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace RGAttendanceService_V00
 {
@@ -30,6 +31,7 @@ namespace RGAttendanceService_V00
             services.AddMvc().AddSessionStateTempDataProvider();
             services.AddSession();
 
+            //Authentication
             services.AddAuthentication("CookieAuthentication")
                 .AddCookie("CookieAuthentication", config =>
                 {
@@ -40,6 +42,12 @@ namespace RGAttendanceService_V00
                     config.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
                 });
 
+            //Entity Framework
+            services.AddDbContext<ParentContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("RGAttendanceService"));
+            });
+
             services.AddRazorPages(options => {
                 options.Conventions.AuthorizeFolder("/ParticipantManage");
                 options.Conventions.AuthorizeFolder("/GroupManage");
@@ -48,6 +56,7 @@ namespace RGAttendanceService_V00
                 options.Conventions.AuthorizePage("/AttendanceCheckUp");
             });
             
+            //ADO net interfaces
             services.Add(new ServiceDescriptor(typeof(IParticipant), new ParticipantSQLDB(Configuration)));
             
             services.Add(new ServiceDescriptor(typeof(IGroup), new GroupSQLDB(Configuration)));
