@@ -9,7 +9,7 @@ Service also keep data about contact information to parents, participants and da
 # Build With
 * ASP.NET Razor Pages
 * ADO.NET (only for sake of learning) 
-* Entity Framework Core (still in progress)
+* Entity Framework Core (Parent class)
 * SQL Server Express
 * Bootstrap
 
