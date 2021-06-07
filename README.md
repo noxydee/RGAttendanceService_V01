@@ -8,8 +8,9 @@ Service also keep data about contact information to parents, participants and da
 
 # Build With
 * ASP.NET Razor Pages
-* ADO.NET (only for sake of learning) 
-* Entity Framework Core (Parent class)
+* ADO.NET (only for sake of learning and only for user/attendance class) 
+* Entity Framework Core
 * SQL Server Express
 * Bootstrap
+* ClosedXML
 
