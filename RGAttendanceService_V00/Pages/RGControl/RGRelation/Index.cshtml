@@ -1,0 +1,50 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGRelation.IndexModel
+
+@{
+    ViewData["Title"] = "Relacja";
+}
+
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <h1>Relacja</h1>
+    </div>
+    <div class="col-sm-6">
+        <p class="text-sm-right align-text-bottom">
+            <a asp-page="Create" class="btn submitButtonCustom">Dodaj nową</a>
+        </p>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipantParents[0].Kid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipantParents[0].Parent)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ParticipantParents) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kid.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */}) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

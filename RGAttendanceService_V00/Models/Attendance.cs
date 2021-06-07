@@ -12,16 +12,16 @@ namespace RGAttendanceService_V00.Models
         public int Id { get; set; }
         public int ParticipantId { get; set; }
         public int GroupId { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [Display(Name ="Data zajęć")]
         public DateTime DateOfClass { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime? DateOfCheck { get; set; }
         [Display(Name ="Nieobecny")]
         public bool AbsenceStatus { get; set; }
         [Display(Name ="Powód nieobecności")]
         public string AbsenceInfo { get; set; }
-        public int CheckerId { get; set; }
+        public int? CheckerId { get; set; }
  
 
         public Group ParticipatingGroup { get; set; }

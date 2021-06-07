@@ -20,8 +20,9 @@ namespace RGAttendanceService_V00.Models
         public string City { get; set; }
         [Display(Name ="Numer")]
         public string Number { get; set; }
+        //Navigation Properties
         public int? CoachId { get; set; }
-
         public Coach Coach { get; set; }
+        public List<Participant> Participants { get; set; }
     }
 }

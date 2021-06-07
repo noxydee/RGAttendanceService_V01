@@ -17,6 +17,9 @@ namespace RGAttendanceService_V00.Models
         public string LastName { get; set; }
         [Display(Name = "Wiek")]
         public int? Age { get; set; }
+        //Navigation Properties
+        public int? GroupId { get; set; }
+        public virtual Group Group { get; set; }
 
     }
 }

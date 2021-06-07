@@ -1,0 +1,97 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGParent.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Szczegóły</h1>
+
+<div>
+    <h4>Rodziców</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="text-center pb-4"><h5>Rodzic</h5><hr /></div>
+            <dl class="row">
+                <dt class="col-5 pb-3">
+                    Dane
+                </dt>
+                <dt class="col-7 pb-3">
+                    Wartość
+                </dt>
+
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.FirstName)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.FirstName)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.LastName)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.LastName)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.DateOfBirth)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.DateOfBirth)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.Gender)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.Gender)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.PhoneNumber)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.PhoneNumber)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.Relation)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.Relation)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.Age)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.Age)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.Country)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.Country)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.AddressCity)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.AddressCity)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.AddressStreet)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.AddressStreet)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Parent.AddressNumber)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Parent.AddressNumber)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Parent.Id" class="submitButtonCustom">Edit</a> |
+    <a asp-page="./Index" class="submitButtonCustom">Back to List</a>
+</div>

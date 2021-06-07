@@ -1,0 +1,58 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGGroup.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Usuń</h1>
+
+<h3>Jesteś pewien że chcesz usunąć tą grupe?</h3>
+<div>
+    <h4>Grupa</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Group.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Group.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Group.type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Group.type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Group.Street)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Group.Street)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Group.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Group.City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Group.Number)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Group.Number)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Group.Coach)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Group.Coach.FirstName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Group.Id" />
+        <input type="submit" value="Delete" class="submitButtonCustom" /> |
+        <a asp-page="./Index" class="submitButtonCustom">Wróć do listy</a>
+    </form>
+</div>

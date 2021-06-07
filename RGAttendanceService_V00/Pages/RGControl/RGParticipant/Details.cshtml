@@ -1,0 +1,170 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGParticipant.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Szczegóły</h1>
+
+<div>
+    <h4>Zawodnika</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="text-center pb-4"><h5>Zawodnik</h5><hr /></div>
+            <dl class="row">
+                <dt class="col-5 pb-3">
+                    Dane
+                </dt>
+                <dt class="col-7 pb-3">
+                    Wartość
+                </dt>
+
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.FirstName)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.FirstName)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.LastName)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.LastName)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.DateOfBirth)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.DateOfBirth)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.Gender)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.Gender)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.PhoneNumber)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.PhoneNumber)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.Age)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.Age)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.Country)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.Country)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.AddressCity)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.AddressCity)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.AddressStreet)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.AddressStreet)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.AddressNumber)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.AddressNumber)
+                </dd>
+                <dt class="col-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Participant.Group)
+                </dt>
+                <dd class="col-7 pb-2">
+                    @Html.DisplayFor(model => model.Participant.Group.Name)
+                </dd>
+                <div class="col-12">
+                    <a asp-page="./Edit" asp-route-id="@Model.Participant.Id" class="submitButtonCustom">Edit</a> |
+                    <a asp-page="./Index" class="submitButtonCustom">Back to List</a>
+                </div>
+            </dl>
+
+
+
+            @foreach (var parent in Model.ParentList)
+            {
+                <div class="text-center pb-4"><h5>@(parent.Relation!=null?parent.Relation:"Opiekun")</h5><hr /></div>
+                <dl class="row">
+                    <dt class="col-5 pb-2">
+                        @Html.DisplayNameFor(p => parent.FirstName)
+                    </dt>
+                    <dd class="col-7 pb-2">
+                        @Html.DisplayFor(p => parent.FirstName)
+                    </dd>
+                    <dt class="col-5 pb-2">
+                        @Html.DisplayNameFor(p => parent.LastName)
+                    </dt>
+                    <dd class="col-7 pb-2">
+                        @Html.DisplayFor(p => parent.LastName)
+                    </dd>
+                    <dt class="col-5 pb-2">
+                        @Html.DisplayNameFor(p => parent.Gender)
+                    </dt>
+                    <dd class="col-7 pb-2">
+                        @Html.DisplayFor(p => parent.Gender)
+                    </dd>
+                    <dt class="col-5 pb-2">
+                        @Html.DisplayNameFor(p => parent.PhoneNumber)
+                    </dt>
+                    <dd class="col-7 pb-2">
+                        @Html.DisplayFor(p => parent.PhoneNumber)
+                    </dd>
+                    <dt class="col-5 pb-2">
+                        @Html.DisplayNameFor(p => parent.Relation)
+                    </dt>
+                    <dd class="col-7 pb-2">
+                        @Html.DisplayFor(p => parent.Relation)
+                    </dd>
+                    <div class="col-12">
+                        <a asp-page="../RGParent/Details" asp-route-id="@parent.Id" class="submitButtonCustom">Details</a>
+                        <a asp-page="../RGParent/Edit" asp-route-id="@parent.Id" class="submitButtonCustom">Edit</a>
+                    </div>
+                </dl>
+            }
+            <div class="text-center pb-4"><h5>Dodaj nowego opiekuna</h5><hr /></div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a asp-page-handler="Addx" asp-route-id="@Model.Participant.Id" class="submitButtonCustom">Dodaj</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-6">
+            <div class="text-center pb-4"><h5>Ostatnie Obecności</h5><hr /></div>
+            <dl class="row">
+                <dt class="col-6 pb-3">
+                    Data zajęć
+                </dt>
+                <dt class="col-6 pb-3">
+                    Obecność
+                </dt>
+                @foreach (var attendance in Model.AttendanceList)
+                {
+                    <dt class="col-6 pb-2">
+                        @Html.DisplayFor(a => attendance.DateOfClass)
+                    </dt>
+                    <dd class="col-6 pb-2">
+                        @(attendance.AbsenceStatus == true ? "Nieobecny" : "Obecny")
+                    </dd>
+                }
+
+            </dl>
+        </div>
+    </div>
+</div>
+

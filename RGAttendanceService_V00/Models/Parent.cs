@@ -40,8 +40,8 @@ namespace RGAttendanceService_V00.Models
         [Display(Name = "Numer Domu")]
         public string AddressNumber { get; set; }
         
-
-
+        //Navigation Properties
+        public List<ParticipantParents> Kids { get; set; }
 
     }
 }

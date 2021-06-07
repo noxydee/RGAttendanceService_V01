@@ -1,0 +1,98 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGParent.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Parent</h4>
+<hr />
+<div class="row">
+    <div class="container">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Parent.Id" />
+            <div class="row mb-3">
+                <div class="form-group col-sm-6">
+                    <label asp-for="Parent.FirstName" class="control-label"></label>
+                    <input asp-for="Parent.FirstName" class="form-control" />
+                    <span asp-validation-for="Parent.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="Parent.LastName" class="control-label"></label>
+                    <input asp-for="Parent.LastName" class="form-control" />
+                    <span asp-validation-for="Parent.LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-sm-4">
+                    <label asp-for="Parent.DateOfBirth" class="control-label"></label>
+                    <input asp-for="Parent.DateOfBirth" class="form-control" />
+                    <span asp-validation-for="Parent.DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label asp-for="Parent.Age" class="control-label"></label>
+                    <input asp-for="Parent.Age" class="form-control" />
+                    <span asp-validation-for="Parent.Age" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label asp-for="Parent.Gender" class="control-label"></label>
+                    <select asp-for="Parent.Gender" class="form-control">
+                        <option>Kobieta</option>
+                        <option>Mężczyzna</option>
+                        <option>Inna</option>
+                        <option>Helikopter Bojowy</option>
+                    </select>
+                    <span asp-validation-for="Parent.Gender" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-sm-6">
+                    <label asp-for="Parent.PhoneNumber" class="control-label"></label>
+                    <input asp-for="Parent.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Parent.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="Parent.Relation" class="control-label"></label>
+                    <input asp-for="Parent.Relation" class="form-control" />
+                    <span asp-validation-for="Parent.Relation" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-sm-3">
+                    <label asp-for="Parent.Country" class="control-label"></label>
+                    <input asp-for="Parent.Country" class="form-control" />
+                    <span asp-validation-for="Parent.Country" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Parent.AddressCity" class="control-label"></label>
+                    <input asp-for="Parent.AddressCity" class="form-control" />
+                    <span asp-validation-for="Parent.AddressCity" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Parent.AddressStreet" class="control-label"></label>
+                    <input asp-for="Parent.AddressStreet" class="form-control" />
+                    <span asp-validation-for="Parent.AddressStreet" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Parent.AddressNumber" class="control-label"></label>
+                    <input asp-for="Parent.AddressNumber" class="form-control" />
+                    <span asp-validation-for="Parent.AddressNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group justify-content-center row">
+                <input type="submit" value="Save" class="btn btn-primary submitButtonCustom" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" class="submitButtonCustom">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

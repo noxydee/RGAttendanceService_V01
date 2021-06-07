@@ -1,0 +1,97 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGParticipant.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Participant</h4>
+<hr />
+<div class="row">
+    <div class="container">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Participant.Id" />
+            <div class="row mb-3">
+                <div class="form-group col-sm-6">
+                    <label asp-for="Participant.FirstName" class="control-label"></label>
+                    <input asp-for="Participant.FirstName" class="form-control" />
+                    <span asp-validation-for="Participant.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="Participant.LastName" class="control-label"></label>
+                    <input asp-for="Participant.LastName" class="form-control" />
+                    <span asp-validation-for="Participant.LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-sm-3">
+                    <label asp-for="Participant.DateOfBirth" class="control-label"></label>
+                    <input asp-for="Participant.DateOfBirth" class="form-control" />
+                    <span asp-validation-for="Participant.DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Participant.Gender" class="control-label"></label>
+                    <select asp-for="Participant.Gender" class="form-control">
+                        <option>Kobieta</option>
+                        <option>Mężczyzna</option>
+                        <option>Inna</option>
+                        <option>Helikopter Bojowy</option>
+                    </select>
+                    <span asp-validation-for="Participant.Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Participant.PhoneNumber" class="control-label"></label>
+                    <input asp-for="Participant.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Participant.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Participant.Age" class="control-label"></label>
+                    <input asp-for="Participant.Age" class="form-control" />
+                    <span asp-validation-for="Participant.Age" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-sm-3">
+                    <label asp-for="Participant.Country" class="control-label"></label>
+                    <input asp-for="Participant.Country" class="form-control" />
+                    <span asp-validation-for="Participant.Country" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Participant.AddressCity" class="control-label"></label>
+                    <input asp-for="Participant.AddressCity" class="form-control" />
+                    <span asp-validation-for="Participant.AddressCity" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Participant.AddressStreet" class="control-label"></label>
+                    <input asp-for="Participant.AddressStreet" class="form-control" />
+                    <span asp-validation-for="Participant.AddressStreet" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Participant.AddressNumber" class="control-label"></label>
+                    <input asp-for="Participant.AddressNumber" class="form-control" />
+                    <span asp-validation-for="Participant.AddressNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-sm-3">
+                    <label asp-for="Participant.GroupId" class="control-label"></label>
+                    <select asp-for="Participant.GroupId" class="form-control" asp-items="ViewBag.GroupId"></select>
+                </div>
+            </div>
+            <div class="form-group justify-content-center row">
+                <input type="submit" value="Save" class="btn btn-primary submitButtonCustom" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" class="submitButtonCustom">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

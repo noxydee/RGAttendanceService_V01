@@ -1,0 +1,54 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGCoach.IndexModel
+
+@{
+    ViewData["Title"] = "Trener";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h1>Trener</h1>
+    </div>
+    <div class="col-sm-6 text-sm-right">
+        <div class="align-baseline mb-n3">
+            <a asp-page="Create" class="submitButtonCustom">Create New</a>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Coach[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Coach[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Coach[0].Age)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Coach) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id" class="submitButtonCustom">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id" class="submitButtonCustom">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id" class="submitButtonCustom">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

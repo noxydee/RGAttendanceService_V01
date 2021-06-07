@@ -1,7 +1,7 @@
 ﻿.submitButtonCustom {
     background-color: #fff;
     border: none;
-    color: #666666;
+    color: #00adb5;
     padding: 6px 18px;
     text-decoration: none;
     cursor: pointer;
@@ -9,7 +9,7 @@
 }
 
     .submitButtonCustom:hover {
-        background-color: #ff76d8;
+        background-color: #00bec7;
         color: #fff;
         text-decoration: none;
     }
@@ -17,11 +17,10 @@
 
 
 body {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background: linear-gradient(-45deg, #333333, #222222);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
-
-    color: #fff;
+    color: #00c8d1;
 }
 
 @keyframes gradient {
@@ -41,6 +40,29 @@ body {
 .my_checkbox {
     height: 2em;
     width: 2em;
+    filter:hue-rotate(320deg);
 }
 
+input[type=checkbox] {
+    
+    cursor: pointer;
+}
 
+.glow {
+    font-size: 80px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #38eff2, 0 0 40px #38eff2, 0 0 50px #38eff2, 0 0 60px #38eff2, 0 0 70px #38eff2;
+    }
+
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #11cbcf, 0 0 50px #11cbcf, 0 0 60px #11cbcf, 0 0 70px #11cbcf, 0 0 80px #11cbcf;
+    }
+}

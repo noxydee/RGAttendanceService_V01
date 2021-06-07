@@ -1,0 +1,70 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGGroup.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Group</h4>
+<hr />
+<div class="row">
+    <div class="container">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Group.Id" />
+            <div class="row mb-3">
+                <div class="form-group col-sm-6">
+                    <label asp-for="Group.Name" class="control-label"></label>
+                    <input asp-for="Group.Name" class="form-control" />
+                    <span asp-validation-for="Group.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="Group.type" class="control-label"></label>
+                    <select asp-for="Group.type" class="form-control">
+                        <option>Naborowa</option>
+                        <option>Zaawansowana</option>
+                        <option>Średnio Zaawansowana</option>
+                        <option>Wycznowa</option>
+                    </select>
+                    <span asp-validation-for="Group.type" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-sm-4">
+                    <label asp-for="Group.Street" class="control-label"></label>
+                    <input asp-for="Group.Street" class="form-control" />
+                    <span asp-validation-for="Group.Street" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label asp-for="Group.City" class="control-label"></label>
+                    <input asp-for="Group.City" class="form-control" />
+                    <span asp-validation-for="Group.City" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label asp-for="Group.Number" class="control-label"></label>
+                    <input asp-for="Group.Number" class="form-control" />
+                    <span asp-validation-for="Group.Number" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-sm-4">
+                    <label asp-for="Group.CoachId" class="control-label"></label>
+                    <select asp-for="Group.CoachId" class="form-control" asp-items="ViewBag.CoachId"></select>
+                </div>
+            </div>
+            <div class="form-group justify-content-center row">
+                <input type="submit" value="Save" class="btn btn-primary submitButtonCustom" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" class="submitButtonCustom">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -12,6 +12,8 @@ using RGAttendanceService_V00.DAL;
 using RGAttendanceService_V00.DAL.CRUD;
 using RGAttendanceService_V00.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Filters;
+using RGAttendanceService_V00.Utils;
 
 namespace RGAttendanceService_V00
 {
@@ -45,24 +47,28 @@ namespace RGAttendanceService_V00
             //Entity Framework
             services.AddDbContext<ParentContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("RGAttendanceService"));
+                options.UseSqlServer(Configuration.GetConnectionString("RGAttendanceServiceEntity"));
             });
 
             services.AddRazorPages(options => {
-                options.Conventions.AuthorizeFolder("/ParticipantManage");
-                options.Conventions.AuthorizeFolder("/GroupManage");
-                options.Conventions.AuthorizeFolder("/CoachManage");
+                options.Conventions.AuthorizeFolder("/RGControl");
                 options.Conventions.AuthorizePage("/AttendanceCheck");
                 options.Conventions.AuthorizePage("/AttendanceCheckUp");
             });
-            
+
+            services.AddRazorPages()
+             .AddMvcOptions(options =>
+             {
+                 options.Filters.Add(new CustomPageFilter(Configuration));
+             });
+
             //ADO net interfaces
             services.Add(new ServiceDescriptor(typeof(IParticipant), new ParticipantSQLDB(Configuration)));
             
             services.Add(new ServiceDescriptor(typeof(IGroup), new GroupSQLDB(Configuration)));
             services.Add(new ServiceDescriptor(typeof(ICoach), new CoachSQLDB(Configuration)));
             services.Add(new ServiceDescriptor(typeof(IUser), new UserSQLDB(Configuration)));
-            services.Add(new ServiceDescriptor(typeof(IAttendance), new AttendanceSQLDB(Configuration)));
+            services.Add(new ServiceDescriptor(typeof(IAttendance), new AtendanceSQLDBEntity(Configuration)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +87,8 @@ namespace RGAttendanceService_V00
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

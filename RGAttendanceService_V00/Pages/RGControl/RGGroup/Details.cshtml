@@ -1,0 +1,94 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGGroup.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Szczegóły</h1>
+
+<div>
+    <h4>Grupy</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="text-center pb-4"><h5>Grupa</h5><hr /></div>
+            <dl class="row">
+                <dt class="col-sm-5 pb-3">
+                    Dane
+                </dt>
+                <dt class="col-sm-7 pb-3">
+                    Wartość
+                </dt>
+                <br />
+                <dt class="col-sm-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Group.Name)
+                </dt>
+                <dd class="col-sm-7 pb-2">
+                    @Html.DisplayFor(model => model.Group.Name)
+                </dd>
+                <dt class="col-sm-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Group.type)
+                </dt>
+                <dd class="col-sm-7 pb-2">
+                    @Html.DisplayFor(model => model.Group.type)
+                </dd>
+                <dt class="col-sm-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Group.Street)
+                </dt>
+                <dd class="col-sm-7 pb-2">
+                    @Html.DisplayFor(model => model.Group.Street)
+                </dd>
+                <dt class="col-sm-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Group.City)
+                </dt>
+                <dd class="col-sm-7 pb-2">
+                    @Html.DisplayFor(model => model.Group.City)
+                </dd>
+                <dt class="col-sm-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Group.Number)
+                </dt>
+                <dd class="col-sm-7 pb-2">
+                    @Html.DisplayFor(model => model.Group.Number)
+                </dd>
+                <dt class="col-sm-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Group.Coach)
+                </dt>
+                <dd class="col-sm-7 pb-2">
+                    @Html.DisplayFor(model => model.Group.Coach.FirstName) @Html.DisplayFor(model => model.Group.Coach.LastName)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-sm-6">
+            <div class="text-center pb-4"><h5>Uczestnicy</h5><hr/></div>
+                <dl class="row">
+                    <dt class="col-sm-4 pb-3 ">
+                        Imię
+                    </dt>
+                    <dt class="col-sm-5 pb-3 ">
+                        Nazwisko
+                    </dt>
+                    <dt class="col-sm-3 pb-3">
+                        Akcja
+                    </dt>
+                    <br />
+                    @foreach (var participant in Model.Participants)
+                    {
+                        <dd class="col-sm-4 pb-2">
+                            @Html.DisplayFor(a => participant.FirstName)
+                        </dd>
+                        <dd class="col-sm-5 pb-2">
+                            @Html.DisplayFor(a => participant.LastName)
+                        </dd>
+                        <dd class="col-sm-3 pb-2">
+                            <a asp-page="../RGParticipant/Details" asp-route-id="@participant.Id" class="submitButtonCustom">Szczegóły</a>
+                        </dd>
+                    }
+                </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Group.Id" class="submitButtonCustom">Edit</a> |
+    <a asp-page="./Index" class="submitButtonCustom">Back to List</a>
+</div>

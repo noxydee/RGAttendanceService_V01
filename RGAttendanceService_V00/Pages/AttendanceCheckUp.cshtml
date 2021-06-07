@@ -12,15 +12,15 @@
     <form class="form-horizontal" method="post">
         <div class="form-group">
             <div class="col-sm-6">
-                <label asp-for="PreCheck.Date" class="control-label col-sm2"></label>
-                <input asp-for="PreCheck.Date" type="datetime-local" class="form-control"/>
+                <label asp-for="PreCheck.Date" class="control-label col-sm-5"></label>
+                <input asp-for="PreCheck.Date" type="datetime-local" class="form-control" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm")"/>
                 <span asp-validation-for="PreCheck.Date" class="text-danger"></span>
             </div>
 
             <div class="col-sm-6"></div>
 
             <div class="col-sm-6">
-                <label asp-for="PreCheck.GroupId" class="control-label col-sm2"></label>
+                <label asp-for="PreCheck.GroupId" class="control-label col-sm-5"></label>
                 <select asp-for="PreCheck.GroupId" class="form-control">
                     @foreach (var Group in Model.GroupList)
                     {
@@ -28,12 +28,12 @@
                     }
                 </select>
                 <span asp-validation-for="PreCheck.GroupId" class="text-danger"></span>
+                <input asp-for="PreCheck.CoachId" type="hidden"/>
                 <span asp-validation-for="PreCheck.CoachId" class="text-danger"></span>
             </div>
         </div>
         <div class="col-sm-6">
             <div>
-                
                 <button type="submit" class="btn btn-primary btn-lg mt-5 submitButtonCustom">Zatwierdź</button>
             </div>
         </div>

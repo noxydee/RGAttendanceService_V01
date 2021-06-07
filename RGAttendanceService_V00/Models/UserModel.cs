@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using RGAttendanceService_V00.DataAnnotations;
 
 namespace RGAttendanceService_V00.Models
 {
@@ -20,7 +21,6 @@ namespace RGAttendanceService_V00.Models
         [Display(Name ="Adres email")]
         [Required(ErrorMessage ="Email jest wymagany")]
         public string Email { get; set; }
-
         public int? CoachId { get; set; }
 
     }

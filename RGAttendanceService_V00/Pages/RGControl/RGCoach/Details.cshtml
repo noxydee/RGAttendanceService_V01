@@ -1,0 +1,48 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGControl.RGCoach.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Szczegóły</h1>
+
+<div>
+    <h4>Trenera</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="text-center pb-4"><h5>Trener</h5><hr /></div>
+            <dl class="row">
+                <dt class="col-sm-5 pb-3">
+                    Dane
+                </dt>
+                <dt class="col-sm-7 pb-3">
+                    Wartość
+                </dt>
+                <dt class="col-sm-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Coach.FirstName)
+                </dt>
+                <dd class="col-sm-7 pb-2">
+                    @Html.DisplayFor(model => model.Coach.FirstName)
+                </dd>
+                <dt class="col-sm-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Coach.LastName)
+                </dt>
+                <dd class="col-sm-7 pb-2">
+                    @Html.DisplayFor(model => model.Coach.LastName)
+                </dd>
+                <dt class="col-sm-5 pb-2">
+                    @Html.DisplayNameFor(model => model.Coach.Age)
+                </dt>
+                <dd class="col-sm-7 pb-2">
+                    @Html.DisplayFor(model => model.Coach.Age)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Coach.Id" class="submitButtonCustom">Edit</a> |
+    <a asp-page="./Index" class="submitButtonCustom">Back to List</a>
+</div>

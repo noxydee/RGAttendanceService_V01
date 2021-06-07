@@ -73,7 +73,7 @@ namespace RGAttendanceService_V00.Pages.Login
                     {
                         return RedirectToPage("../Index");
                     }
-                    return RedirectToPage(returnUrl);
+                    return Redirect(returnUrl);
                 }
                 return Page();
             }

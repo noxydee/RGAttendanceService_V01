@@ -26,30 +26,68 @@
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-page="/AttendanceCheckUp">Sprawdź obecność</a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Uczestnik</a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/ParticipantManage/CreateParticipant">Dodaj</a>
-                                <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/ParticipantManage/ParticipantsList">Wyświetl</a>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Grupa</a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/GroupManage/CreateGroup">Dodaj</a>
-                                <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/GroupManage/GroupsList">Wyświetl</a>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Trener</a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/CoachManage/CreateCoach">Dodaj</a>
-                                <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/CoachManage/CoachesList">Wyświetl</a>
-                            </ul>
-                        </li>
+                        @if (Context.User.Identity.AuthenticationType == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-page="/Login/RGLogin">Login</a>
+                            </li>
+                        }
+                        @if (Context.User.Identity.AuthenticationType != null && Context.User.Identity.IsAuthenticated)
+                        {
+                            @if (Context.Session.GetString("JsonSession") == null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-page="/AttendanceCheckUp">Sprawdź obecność</a>
+                                </li>
+                            }
+                            @if (Context.Session.GetString("JsonSession") != null)
+                            {
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Sprawdź Obecność</a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <a class="nav-link " asp-area="" asp-page="/AttendanceCheckUp">Sprawdź obecność</a>
+                                        <a class="nav-link " asp-area="" asp-page="/LastChecked">Ostatnio sprawdzona</a>
+                                    </ul>
+                                </li>
+                            }
+                            <li class="dropdown">
+                                <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Uczestnik</a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/RGControl/RGParticipant/Create">Dodaj</a>
+                                    <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/RGControl/RGParticipant/Index">Wyświetl</a>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Grupa</a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/RGControl/RGGroup/Create">Dodaj</a>
+                                    <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/RGControl/RGGroup/Index">Wyświetl</a>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Trener</a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/RGControl/RGCoach/Create">Dodaj</a>
+                                    <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/RGControl/RGCoach/Index">Wyświetl</a>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" href="#">Rodzic</a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/RGControl/RGParent/Create">Dodaj</a>
+                                    <a class="nav-link text-dark textdarkk" asp-area="" asp-page="/RGControl/RGParent/Index">Wyświetl</a>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-page="/RGRaport">Raport obecności</a>
+                            </li>
+                            @if (Context.User.Identity.AuthenticationType != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-page="/Login/RGLogout">Logout</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>
@@ -64,6 +102,7 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - RGAttendanceService_V00 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <p class="float-right">@ViewData["filterMessage"]</p>
         </div>
     </footer>
 

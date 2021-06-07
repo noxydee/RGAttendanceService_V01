@@ -1,0 +1,45 @@
+﻿@page
+@model RGAttendanceService_V00.Pages.RGRaportModel
+@{
+    ViewData["title"] = "Generuj raport";
+}
+
+<head>
+
+</head>
+<body>
+    <form class="form-horizontal" method="post" asp-page="/RGRaport" asp-page-handler="CreateDocument">
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="Groups[0].Name" class="control-label col-sm-5"></label>
+                <select asp-for="ChosenGroup" class="form-control">
+                    @foreach (var Group in Model.Groups)
+                    {
+                        <option value="@Group.Id">@Group.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label class="control-label col-sm-5">Zajęcia od</label>
+                <input asp-for="StartDate" type="datetime-local" class="form-control" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm")" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label class="control-label col-sm-5">Zajęcia do</label>
+                <input asp-for="EndDate" type="datetime-local" class="form-control" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm")" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <button type="submit" value="Create Document" class="btn btn-primary btn-lg mt-5 submitButtonCustom">Zatwierdź</button>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+    </form>
+</body>

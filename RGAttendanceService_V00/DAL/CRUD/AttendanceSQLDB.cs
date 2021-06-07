@@ -20,7 +20,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
         public AttendanceSQLDB(IConfiguration _configuration)
         {
             this._configuration = _configuration;
-            ConnectionString = _configuration.GetConnectionString("RGAttendanceService");
+            ConnectionString = _configuration.GetConnectionString("RGAttendanceServiceEntity");
             Connection.ConnectionString = ConnectionString;
         }
 
@@ -60,7 +60,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
                 cmd.Parameters.Add(AbsenceInfoParam);
 
                 SqlParameter CheckerIdParam = new SqlParameter("@CheckerId", SqlDbType.Int);
-                CheckerIdParam.Value = attendance.CheckerId;
+                CheckerIdParam.Value = (attendance.CheckerId ?? (object)DBNull.Value);
                 cmd.Parameters.Add(CheckerIdParam);
 
                 Connection.Open();

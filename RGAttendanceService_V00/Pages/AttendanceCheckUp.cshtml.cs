@@ -10,6 +10,7 @@ using RGAttendanceService_V00.Models;
 using System.Security.Claims;
 using RGAttendanceService_V00.DAL.Interfaces;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace RGAttendanceService_V00.Pages
 {
@@ -19,54 +20,52 @@ namespace RGAttendanceService_V00.Pages
         private IGroup GroupDB;
         private ICoach CoachDB;
         private IUser UserDB;
+        private ParentContext _context;
 
         [BindProperty]
         public PreCheckModel PreCheck { get; set; }
-        public List<Group> GroupList = new List<Group>();
-        public AttendanceCheckUpModel(IConfiguration _configuration,IGroup GroupDB,ICoach CoachDB,IUser UserDB)
+        public IList<Group> GroupList { get; set; }
+        public AttendanceCheckUpModel(IConfiguration _configuration,IGroup GroupDB,ICoach CoachDB,IUser UserDB,ParentContext context)
         {
             this._configuration = _configuration;
             this.GroupDB = GroupDB;
             this.CoachDB = CoachDB;
             this.UserDB = UserDB;
-            GroupList = GroupDB.GetList();
-        }
+            _context = context;
 
-        public void OnGet()
-        {
+            GroupList = _context.Group
+                .Include(@a => @a.Coach).ToList();
             
         }
 
-        public IActionResult OnPost(PreCheckModel preCheck)
+        public async Task OnGetAsync()
+        {
+            GroupList = await _context.Group
+                .Include(@a => @a.Coach).ToListAsync();
+        }
+
+        public IActionResult OnPost(PreCheckModel PreCheck)
         {
             try
             {
                 int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value);
-                System.Diagnostics.Debug.WriteLine("in onpost ->"+UserId);
                 UserModel x = UserDB.Get(UserId);
 
-                System.Diagnostics.Debug.WriteLine("gitara -> " +x.CoachId);
+                PreCheck.CoachId = x.CoachId;
 
-                if (x.CoachId == null || x.CoachId == 0)
+                if (ModelState.IsValid)
                 {
-
+                    return RedirectToPage("/AttendanceCheck", "CheckUpValues", PreCheck);
                 }
-                else
+                else if(!ModelState.IsValid)
                 {
-                    System.Diagnostics.Debug.WriteLine("gitara siema -> " + x.CoachId);
-                    preCheck.CoachId = x.CoachId ?? default(int);
-                    System.Diagnostics.Debug.WriteLine("gitara siema 2 -> " + preCheck.CoachId);
+                    return Page();
                 }
-
-                if(ModelState.IsValid)
-                {
-                    return RedirectToPage("/AttendanceCheck","CheckUpValues",preCheck);
-                }
-                return Page();
+                
+                return RedirectToPage("/AttendanceCheckUp");
             }
             catch (Exception ex)
             {
-
                 return RedirectToPage("/Index");
             }
 

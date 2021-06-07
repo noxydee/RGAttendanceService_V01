@@ -22,7 +22,7 @@ namespace RGAttendanceService_V00.DAL.CRUD
         public UserSQLDB(IConfiguration _configuration)
         {
             this._configuration = _configuration;
-            ConnectionString = _configuration.GetConnectionString("RGAttendanceService");
+            ConnectionString = _configuration.GetConnectionString("RGAttendanceServiceEntity");
             Connection.ConnectionString = ConnectionString;
         }
         private string HashPassword(UserModel user)
@@ -65,7 +65,6 @@ namespace RGAttendanceService_V00.DAL.CRUD
             catch (Exception ex)
             {
                 Connection.Close();
-
                 return 1;
             }
 
