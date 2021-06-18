@@ -4,6 +4,7 @@ Rythmic Gymnastic Attendance checking service targetet for RG Classes but can be
 
 # Demo publish
 - https://rgattendanceservicev0020210618131149.azurewebsites.net/
+- demo account login-root password-root
 
 # Description
 Service to check,keep track on and store attendance raports from extracurricular activities 
