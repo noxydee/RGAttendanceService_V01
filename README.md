@@ -2,6 +2,9 @@
 
 Rythmic Gymnastic Attendance checking service targetet for RG Classes but can be used to variety of other extracurricular activities
 
+# Demo publish
+- https://rgattendanceservicev0020210618131149.azurewebsites.net/
+
 # Description
 Service to check,keep track on and store attendance raports from extracurricular activities 
 Service also keep data about contact information to parents, participants and data about groups and coaches. Can generate Excel files with attendance records for particular dates or/and groups.
