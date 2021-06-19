@@ -8,6 +8,9 @@ using RGAttendanceService_V00.Models;
 using RGAttendanceService_V00.DAL;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RGAttendanceService_V00.DAL.Interfaces;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace RGAttendanceService_V00.Pages.Login
 {
@@ -22,6 +25,7 @@ namespace RGAttendanceService_V00.Pages.Login
         {
             _context = context;
             _UserDB = UserDB;
+            Coaches = new List<Coach>();
         }
 
         public IActionResult OnGet()
@@ -30,20 +34,35 @@ namespace RGAttendanceService_V00.Pages.Login
             return Page();
         }
 
-        public IActionResult OnPost(UserModel RGUser)
+        public async Task<IActionResult> OnPostAsync(UserModel RGUser)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
+                    if(RGUser.CoachId==0)
+                    {
+                        RGUser.CoachId = null;
+                    }
+
+                    var claims = new List<Claim>()
+                    {
+                    new Claim(ClaimTypes.Name,RGUser.UserName),
+                    new Claim(ClaimTypes.Email,RGUser.Email),
+                    new Claim(ClaimTypes.Sid,Convert.ToString(RGUser.Id))
+                    };
+
+                    var ClaimsIdentity = new ClaimsIdentity(claims, "CookieAuthentication");
+                    await HttpContext.SignInAsync("CookieAuthentication", new ClaimsPrincipal(ClaimsIdentity));
+
                     _UserDB.Add(RGUser);
-                    return RedirectToPage("Index");
+                    return RedirectToPage("../Index");
                 }
                 return Page();
             }
             catch (Exception ex)
             {
-                return RedirectToPage("Index");
+                return RedirectToPage("../Index");
                 throw;
             }
         }

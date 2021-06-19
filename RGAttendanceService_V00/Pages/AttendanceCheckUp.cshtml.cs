@@ -59,6 +59,7 @@ namespace RGAttendanceService_V00.Pages
                 }
                 else if(!ModelState.IsValid)
                 {
+                    //System.Diagnostics.Debug.WriteLine();
                     return Page();
                 }
                 

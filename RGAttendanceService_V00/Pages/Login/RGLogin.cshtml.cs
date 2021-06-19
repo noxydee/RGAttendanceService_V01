@@ -79,7 +79,6 @@ namespace RGAttendanceService_V00.Pages.Login
             }
             catch (Exception ex)
             {
-
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 return Page();
             }

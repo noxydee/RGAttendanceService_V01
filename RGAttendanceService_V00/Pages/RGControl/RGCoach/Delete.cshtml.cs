@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RGAttendanceService_V00.DAL;
 using RGAttendanceService_V00.Models;
+using RGAttendanceService_V00.DAL.Interfaces;
 
 namespace RGAttendanceService_V00.Pages.RGControl.RGCoach
 {
     public class DeleteModel : PageModel
     {
         private readonly RGAttendanceService_V00.DAL.ParentContext _context;
+        private IAttendance _AttendanceDB;
 
-        public DeleteModel(RGAttendanceService_V00.DAL.ParentContext context)
+        public DeleteModel(RGAttendanceService_V00.DAL.ParentContext context,IAttendance _AttendanceDB)
         {
             _context = context;
+            this._AttendanceDB = _AttendanceDB;
         }
 
         [BindProperty]
@@ -49,6 +52,7 @@ namespace RGAttendanceService_V00.Pages.RGControl.RGCoach
 
             if (Coach != null)
             {
+                //_AttendanceDB.SetCheckerId_Null(Coach.Id);
                 _context.Coach.Remove(Coach);
                 await _context.SaveChangesAsync();
             }

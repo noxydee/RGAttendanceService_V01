@@ -60,9 +60,8 @@ namespace RGAttendanceService_V00.DAL
                 .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Coach>()
-                .HasOne<Group>(g => g.Group)
+                .HasMany<Group>(g => g.Group)
                 .WithOne(c => c.Coach)
-                .HasForeignKey<Group>(f => f.CoachId)
                 .OnDelete(DeleteBehavior.SetNull);
 
             

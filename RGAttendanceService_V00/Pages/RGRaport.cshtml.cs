@@ -116,7 +116,6 @@ namespace RGAttendanceService_V00.Pages
                 {
                     workbook.SaveAs(stream);
                     var content = stream.ToArray();
-                    System.Diagnostics.Debug.WriteLine("DownloadFile");
 
                     return File(content, contentType, fileName);
                 }

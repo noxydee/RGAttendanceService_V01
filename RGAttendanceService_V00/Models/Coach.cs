@@ -18,8 +18,7 @@ namespace RGAttendanceService_V00.Models
         [Display(Name = "Wiek")]
         public int? Age { get; set; }
         //Navigation Properties
-        public int? GroupId { get; set; }
-        public virtual Group Group { get; set; }
+        public List<Group> Group { get; set; }
 
     }
 }
