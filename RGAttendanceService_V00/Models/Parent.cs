@@ -25,7 +25,8 @@ namespace RGAttendanceService_V00.Models
         [Required(ErrorMessage = "Pole płeć jest wymagane")]
         public string Gender { get; set; }
         [Display(Name = "Numer Telefonu")]
-        [DataType(DataType.PhoneNumber, ErrorMessage = "Błędy number telefonu")]
+        //[DataType(DataType.PhoneNumber, ErrorMessage = "Błędy number telefonu")]
+        [Phone(ErrorMessage ="Niepoprawny numer telefonu")]
         public string PhoneNumber { get; set; }
         [Display(Name ="Pokrewieństwo")]
         public string Relation { get; set; }

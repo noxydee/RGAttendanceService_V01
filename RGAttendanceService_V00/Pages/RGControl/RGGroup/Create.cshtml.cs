@@ -21,7 +21,9 @@ namespace RGAttendanceService_V00.Pages.RGControl.RGGroup
 
         public IActionResult OnGet()
         {
-        ViewData["CoachId"] = new SelectList(_context.Coach, "Id", "FirstName");
+            var items = new SelectList(_context.Coach.Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.FirstName + " " + s.LastName }), "Value", "Text").ToList();
+            items.Insert(0, new SelectListItem { Value = "0", Text = "Brak" });
+            ViewData["CoachId"] = items;
             return Page();
         }
 
@@ -36,6 +38,7 @@ namespace RGAttendanceService_V00.Pages.RGControl.RGGroup
                 return Page();
             }
 
+            Group.CoachId = (Group.CoachId == 0 ? null : Group.CoachId);
             _context.Group.Add(Group);
             await _context.SaveChangesAsync();
 

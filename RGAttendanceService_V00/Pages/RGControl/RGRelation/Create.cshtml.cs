@@ -32,7 +32,6 @@ namespace RGAttendanceService_V00.Pages.RGControl.RGRelation
         {
 
             int id = Participantx.Id;
-            System.Diagnostics.Debug.WriteLine("siemxx -> " + id);
             var Participantxx = _context.Participant.Where(p => p.Id.Equals(id));
 
             ViewData["ParticipantId"] = new SelectList(Participantxx, "Id", "FirstName");

@@ -169,7 +169,6 @@ namespace RGAttendanceService_V00.DAL.CRUD
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("siema");
                 Connection.Close();
                 return 1;
             }

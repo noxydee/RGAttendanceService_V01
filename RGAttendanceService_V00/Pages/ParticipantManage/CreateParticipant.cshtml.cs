@@ -38,8 +38,6 @@ namespace RGAttendanceService_V00.Pages
             {
                 if (ModelState.IsValid)
                 {
-
-                    System.Diagnostics.Debug.WriteLine(JsonSerializer.Serialize(NewParticipant));
                     ParticipantDB.Add(NewParticipant);
                     return RedirectToPage("/Index");
                 }

@@ -88,7 +88,6 @@ namespace RGAttendanceService_V00.DAL
 
         public List<Attendance> GetList()
         {
-            System.Diagnostics.Debug.WriteLine("insideGetList");
             try
             {
                 List<Attendance> List = new List<Attendance>();
@@ -110,7 +109,6 @@ namespace RGAttendanceService_V00.DAL
                         AbsenceInfo = reader["AbsenceInfo"] == DBNull.Value ? null : Convert.ToString(reader["AbsenceInfo"]),
                         CheckerId = reader["CheckerId"] == DBNull.Value ? null : Convert.ToInt32(reader["CheckerId"])
                     };
-                    System.Diagnostics.Debug.WriteLine(x.DateOfClass);
                     List.Add(x);
                 }
 

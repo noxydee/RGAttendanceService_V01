@@ -28,7 +28,8 @@ namespace RGAttendanceService_V00.Models
         [Required(ErrorMessage ="Pole płeć jest wymagane")]
         public string Gender { get; set; }
         [Display(Name ="Numer Telefonu")]
-        [DataType(DataType.PhoneNumber,ErrorMessage ="Błędy number telefonu")]
+        //[DataType(DataType.PhoneNumber,ErrorMessage ="Błędy number telefonu")]
+        [Phone(ErrorMessage = "Niepoprawny numer telefonu")]
         public string PhoneNumber { get; set; }
         [Display(Name ="Wiek")]
         [Range(1,110,ErrorMessage ="Wiek musi być z zakresu 1-110")]

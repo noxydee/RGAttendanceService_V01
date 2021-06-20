@@ -17,13 +17,11 @@ namespace RGAttendanceService_V00.DataAnnotations
         public CoachAttributes(ParentContext context)
         {
             
-            System.Diagnostics.Debug.WriteLine("ne jest czy jest?"+JsonSerializer.Serialize(context.Coach));
         }
 
 
         public override bool IsValid(object value)
         {
-            System.Diagnostics.Debug.WriteLine("ne jest czy jest?");
             return false;
         }
     }

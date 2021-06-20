@@ -37,11 +37,35 @@ namespace RGAttendanceService_V00.Pages
                 .Include(@a => @a.Coach).ToList();
             
         }
+        private List<Group> OrderGroupList(IList<Group> list)
+        {
+            int UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value);
+            UserModel xx = UserDB.Get(UserId);
+            int? CoachId = xx.CoachId==null?0:xx.CoachId;
+
+            List<Group> OrderedGroup = new List<Group>();
+            List<Group> UnOrderedGroup = new List<Group>();
+            foreach (Group x in list)
+            {
+                if(x.CoachId==CoachId)
+                {
+                    OrderedGroup.Add(x);
+                }
+                else
+                {
+                    UnOrderedGroup.Add(x);
+                }
+            }
+            OrderedGroup.AddRange(UnOrderedGroup);
+
+            return OrderedGroup;
+        }
 
         public async Task OnGetAsync()
         {
             GroupList = await _context.Group
                 .Include(@a => @a.Coach).ToListAsync();
+            GroupList = OrderGroupList(GroupList);
         }
 
         public IActionResult OnPost(PreCheckModel PreCheck)

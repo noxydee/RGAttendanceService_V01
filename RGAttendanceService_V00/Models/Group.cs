@@ -21,6 +21,7 @@ namespace RGAttendanceService_V00.Models
         [Display(Name ="Numer")]
         public string Number { get; set; }
         //Navigation Properties
+        [Display(Name="Główny trener")]
         public int? CoachId { get; set; }
         public Coach Coach { get; set; }
         public List<Participant> Participants { get; set; }

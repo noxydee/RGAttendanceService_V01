@@ -14,6 +14,7 @@ namespace RGAttendanceService_V00.Models
         [Display(Name ="Data zajęć")]
         [DataType(DataType.DateTime, ErrorMessage ="Błędny format daty")]
         public DateTime Date { get; set; }
+        [Display(Name ="Grupa")]
         public int GroupId { get; set; }
         public int? CoachId { get; set; }
     }

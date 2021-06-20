@@ -96,7 +96,6 @@ namespace RGAttendanceService_V00.DAL.CRUD
 
         public UserModel Get(int _id)
         {
-            System.Diagnostics.Debug.WriteLine("siema ->"+_id);
             try
             {
                 UserModel TargetUser = new UserModel();

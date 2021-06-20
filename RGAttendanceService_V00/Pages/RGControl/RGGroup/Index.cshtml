@@ -35,7 +35,7 @@
                 @Html.DisplayNameFor(model => model.Group[0].Number)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Group[0].Coach)
+                @Html.DisplayNameFor(model => model.Group[0].Coach.FirstName)
             </th>
             <th></th>
         </tr>
@@ -60,7 +60,7 @@
                     @Html.DisplayFor(modelItem => item.Number)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Coach.FirstName)
+                    @Html.DisplayFor(modelItem => item.Coach.FirstName) @Html.DisplayFor(modelItem =>item.Coach.LastName)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id" class="submitButtonCustom">Edit</a> |

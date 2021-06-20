@@ -20,6 +20,7 @@ namespace RGAttendanceService_V00.Models
         public string Password { get; set; }
         [Display(Name ="Adres email")]
         [Required(ErrorMessage ="Email jest wymagany")]
+        [EmailAddress(ErrorMessage ="Adres email jest nie poprawny")]
         public string Email { get; set; }
         public int? CoachId { get; set; }
 
